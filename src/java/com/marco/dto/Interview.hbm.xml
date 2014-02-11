@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 24, 2013 3:56:58 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.marco.dto.Interview" table="interview" schema="uoc_bugdb">
+        <composite-id name="id" class="com.marco.dto.InterviewId">
+            <key-property name="dniNumber" type="string">
+                <column name="dni_number" length="10" />
+            </key-property>
+            <key-property name="cifCode" type="string">
+                <column name="cif_code" length="9" />
+            </key-property>
+            <key-property name="interviewDate" type="timestamp">
+                <column name="interview_date" length="29" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="company" class="com.marco.dto.Company" update="false" insert="false" fetch="select">
+            <column name="cif_code" length="9" not-null="true" />
+        </many-to-one>
+        <many-to-one name="person" class="com.marco.dto.Person" update="false" insert="false" fetch="select">
+            <column name="dni_number" length="10" not-null="true" />
+        </many-to-one>
+        <property name="accepted" type="boolean">
+            <column name="accepted" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

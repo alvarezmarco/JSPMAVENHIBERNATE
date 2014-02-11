@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 24, 2013 3:56:58 AM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.marco.dto.Person" table="person" schema="uoc_bugdb">
+        <id name="dniNumber" type="string">
+            <column name="dni_number" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="first_name" length="20" not-null="true" />
+        </property>
+        <property name="surname" type="string">
+            <column name="surname" length="20" not-null="true" />
+        </property>
+        <property name="gender" type="char">
+            <column name="gender" length="1" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="10" not-null="true" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="20" not-null="true" />
+        </property>
+        <property name="dateOfBirth" type="date">
+            <column name="date_of_birth" length="13" not-null="true" />
+        </property>
+        <set name="interviews" inverse="true">
+            <key>
+                <column name="dni_number" length="10" not-null="true" />
+            </key>
+            <one-to-many class="com.marco.dto.Interview" />
+        </set>
+        <set name="workeds" inverse="true">
+            <key>
+                <column name="dni_number" length="10" not-null="true" />
+            </key>
+            <one-to-many class="com.marco.dto.Worked" />
+        </set>
+    </class>
+</hibernate-mapping>
